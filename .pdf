@@ -1,53 +1,5 @@
-# Chord DHT Implementation Challenge: Surviving Network Partitions
+Chord DHT Implementation Challenge: Surviving Network Partitions
 
-## Problem Statement
 
-Implement a simplified version of the Chord distributed hash table protocol in Go that can withstand network partitions while maintaining data integrity. The system should be minimal yet robust.
-
-## Core Requirements
-
-1. Create a ring-based DHT with a fixed number of nodes (simplification)
-2. Implement finger tables for O(log n) lookup time
-3. Handle **network partitions** gracefully - this is the hard part
-4. Implement a strong consistency model for updates during network healing
-5. Use a command-line interface with simple commands
-
-## Technical Constraints
-
-- Maximum of 3 external dependencies allowed
-- Must handle at least 2 concurrent network partitions
-- System must self-heal when partitions resolve
-- Implement vector clocks for conflict resolution
-- All operations must complete or fail within a 2-second timeout
-- Nodes must detect and resolve "split-brain" scenarios
-
-## Example Commands
-
-```
-> START 5           # Start a system with 5 nodes
-> PUT key1 value1   # Store a key-value pair
-> GET key1          # Retrieve a value
-> PARTITION 1,2 3,4,5  # Create network partition between nodes [1,2] and [3,4,5]
-> PUT key1 newvalue  # Update during partition
-> HEAL              # Resolve the partition
-> GET key1          # Should return consistent result based on vector clock
-> STATUS            # Show system state
-```
-
-## Evaluation Criteria
-
-1. **Correctness**: Does the system maintain data consistency during and after partitions?
-2. **Efficiency**: How quickly does the system detect and heal from partitions?
-3. **Simplicity**: How clean and maintainable is your implementation?
-4. **Documentation**: Clear explanation of your consistency model and partition handling
-
-## Test Scenarios
-
-Your implementation will be tested against these specific scenarios:
-
-1. Concurrent writes to the same key from different partitions
-2. Multiple overlapping partitions forming and healing
-3. Leader node failure during a partition
-4. Byzantine failure (node sending corrupted data)
-
-The challenge focuses specifically on the hardest part of DHT systems - maintaining consistency during network failures - while simplifying the node discovery and dynamic membership aspects.
+The challenge focuses specifically on the hardest part of DHT systems - maintaining consistency during
+network failures - while simplifying the node discovery and dynamic membership aspects.
